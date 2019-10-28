@@ -48,11 +48,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let tableView = itensTableView {
             tableView.reloadData()
         } else {
-            let alerta = UIAlertController(title: "Desculpe =Z", message: "Não foi possível adicionar o item na lista", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alerta.addAction(ok)
-            
-            present(alerta, animated: true, completion: nil)
+            Alerta(controller: self).exibe()
         }
     }
     
