@@ -27,7 +27,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet var nomeTextField: UITextField?
     @IBOutlet weak var felicidadeTextField: UITextField?
-    @IBOutlet weak var itensTableView: UITableView!
+    @IBOutlet weak var itensTableView: UITableView?
     
     // MARK: - View lifecycle
     
@@ -43,7 +43,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func add(_ item: Item) {
         itens.append(item)
-        itensTableView.reloadData()
+        itensTableView?.reloadData()
+        
+        if let tableView = itensTableView {
+            tableView.reloadData()
+        } else {
+            let alerta = UIAlertController(title: "Desculpe =Z", message: "Não foi possível adicionar o item na lista", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alerta.addAction(ok)
+            
+            present(alerta, animated: true, completion: nil)
+        }
     }
     
     // MARK: - UITableViewDataSource
