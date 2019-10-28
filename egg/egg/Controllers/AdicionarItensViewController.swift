@@ -48,8 +48,32 @@ class AdicionarItensViewController: UIViewController {
         
         if let numeroDeCalorias = Double(calorias) {
             let item = Item(nome: nome, calorias: numeroDeCalorias)
-            delegate?.add(item)
             
+//            // 1
+//            if delegate == nil {
+//                return
+//            }
+//            delegate!.add(item) // Com ! -> Forced Unwrapped
+//
+//            // 2
+//            if delegate != nil {
+//                return
+//            }
+//            delegate!.add(item)
+//
+//            // 3
+//            if let delegate = delegate {
+//                delegate.add(item)
+//            }
+//
+//            // 4
+//            guard let delegate = delegate else { return }
+//            delegate.add(item)
+//
+//            // 5
+//            delegate?.add(item) // Faz um if interno, é possível encadear -> delegate?.add()?.remove()?.etc()
+            
+            delegate?.add(item)
             navigationController?.popViewController(animated: true)
         }
         
