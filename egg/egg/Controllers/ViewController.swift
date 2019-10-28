@@ -48,7 +48,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let tableView = itensTableView {
             tableView.reloadData()
         } else {
-            Alerta(controller: self).exibe()
+//            Alerta(controller: self).exibe(titulo: "Desculpe =Z", mensagem: "Não foi possível adicionar este novo item")
+            Alerta(controller: self).exibe(mensagem: "Não foi possível adicionar este novo item")
         }
     }
     
