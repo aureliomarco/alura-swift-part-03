@@ -38,16 +38,13 @@ class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDeleg
     @objc func mostrarDetalhes(_ gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began {
             let celula = gesture.view as! UITableViewCell
-            
             guard let indexPath = tableView.indexPath(for: celula) else { return }
             let refeicao = refeicoes[indexPath.row]
             
-            let alerta = UIAlertController(title: refeicao.nome, message: refeicao.detalhes(), preferredStyle: .alert)
-            
-            present(alerta, animated: true, completion: nil)
-            let botaoCancelar = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            
-            alerta.addAction(botaoCancelar)
+            RemoveRefeicaoViewController(controller: self).exibe(refeicao, handler: {alert in
+                self.refeicoes.remove(at: indexPath.row)
+                self.tableView.reloadData()
+            })
         }
     }
     
