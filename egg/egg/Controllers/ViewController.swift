@@ -35,6 +35,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         let botaoAdicionarItem = UIBarButtonItem(title: "+ item", style: .plain, target: self, action: #selector(adicionarItem))
         navigationItem.rightBarButtonItem = botaoAdicionarItem
+        
+        guard let diretorio = recuperaDiretorio() else { return }
+        do {
+            let dados = try Data(contentsOf: diretorio)
+            
+            // É possível escrever o final, typecast para array de duas formas:
+            //let itensSalvos = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(dados) as! Array<Item>
+            let itensSalvos = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(dados) as! [Item]
+            itens = itensSalvos
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     @objc func adicionarItem() {
