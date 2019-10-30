@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 protocol AdicionaRefeicaoDelegate {
      func add(_ refeicao: Refeicao)
@@ -34,6 +35,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         let botaoAdicionarItem = UIBarButtonItem(title: "+ item", style: .plain, target: self, action: #selector(adicionarItem))
         navigationItem.rightBarButtonItem = botaoAdicionarItem
+        
+        guard let diretorio = recuperaDiretorio() else { return }
+        do {
+            let dados = try Data(contentsOf: diretorio)
+            
+            // É possível escrever o final, typecast para array de duas formas:
+            //let itensSalvos = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(dados) as! Array<Item>
+            let itensSalvos = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(dados) as! [Item]
+            itens = itensSalvos
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     @objc func adicionarItem() {
@@ -48,9 +61,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let tableView = itensTableView {
             tableView.reloadData()
         } else {
-//            Alerta(controller: self).exibe(titulo: "Desculpe =Z", mensagem: "Não foi possível adicionar este novo item")
             Alerta(controller: self).exibe(mensagem: "Não foi possível adicionar este novo item")
         }
+        
+        do {
+            let dados = try NSKeyedArchiver.archivedData(withRootObject: itens, requiringSecureCoding: false)
+            guard let caminho = recuperaDiretorio() else { return }
+            try dados.write(to: caminho)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func recuperaDiretorio() -> URL? {
+        guard let diretorio = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        let caminho = diretorio.appendingPathComponent("itens")
+        
+        return caminho
     }
     
     // MARK: - UITableViewDataSource
