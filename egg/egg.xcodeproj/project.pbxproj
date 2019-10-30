@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66025CAD236A148800BD15C8 /* RefeicaoDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66025CAC236A148800BD15C8 /* RefeicaoDao.swift */; };
 		667D981F235E3E34002B1FFE /* RefeicoesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667D981E235E3E34002B1FFE /* RefeicoesTableViewController.swift */; };
 		66B832F423677F0F0031D5F0 /* Alerta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B832F323677F0F0031D5F0 /* Alerta.swift */; };
 		66B832F6236868410031D5F0 /* RemoveRefeicaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B832F5236868410031D5F0 /* RemoveRefeicaoViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		66025CAC236A148800BD15C8 /* RefeicaoDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefeicaoDao.swift; sourceTree = "<group>"; };
 		667D981E235E3E34002B1FFE /* RefeicoesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefeicoesTableViewController.swift; sourceTree = "<group>"; };
 		66B832F323677F0F0031D5F0 /* Alerta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerta.swift; sourceTree = "<group>"; };
 		66B832F5236868410031D5F0 /* RemoveRefeicaoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRefeicaoViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				66F5709E235DE5A50008D30E /* Refeicao.swift */,
 				66F570A0235DE6480008D30E /* Item.swift */,
 				66B832F323677F0F0031D5F0 /* Alerta.swift */,
+				66025CAC236A148800BD15C8 /* RefeicaoDao.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				66F570A1235DE6480008D30E /* Item.swift in Sources */,
 				66E904202358EB1D00F8C2BB /* ViewController.swift in Sources */,
 				66B832F6236868410031D5F0 /* RemoveRefeicaoViewController.swift in Sources */,
+				66025CAD236A148800BD15C8 /* RefeicaoDao.swift in Sources */,
 				66F285892360A75300C16DC4 /* AdicionarItensViewController.swift in Sources */,
 				66E9041C2358EB1D00F8C2BB /* AppDelegate.swift in Sources */,
 				667D981F235E3E34002B1FFE /* RefeicoesTableViewController.swift in Sources */,
