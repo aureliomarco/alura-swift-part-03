@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 protocol AdicionaRefeicaoDelegate {
      func add(_ refeicao: Refeicao)
@@ -48,9 +49,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let tableView = itensTableView {
             tableView.reloadData()
         } else {
-//            Alerta(controller: self).exibe(titulo: "Desculpe =Z", mensagem: "Não foi possível adicionar este novo item")
             Alerta(controller: self).exibe(mensagem: "Não foi possível adicionar este novo item")
         }
+        
+        do {
+            let dados = try NSKeyedArchiver.archivedData(withRootObject: itens, requiringSecureCoding: false)
+            guard let caminho = recuperaDiretorio() else { return }
+            try dados.write(to: caminho)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func recuperaDiretorio() -> URL? {
+        guard let diretorio = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        let caminho = diretorio.appendingPathComponent("itens")
+        
+        return caminho
     }
     
     // MARK: - UITableViewDataSource
